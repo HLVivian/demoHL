@@ -39,9 +39,12 @@
 }
 //图片
 -(CGRect)imageRectForContentRect:(CGRect)contentRect{
-    CGFloat imageW = contentRect.size.width * 0.9;
-    CGFloat imageH = contentRect.size.height * 0.7;
-    return CGRectMake(5, 2 , imageW, imageH);
+//    CGFloat imageW = contentRect.size.width * 0.9;
+//    CGFloat imageH = contentRect.size.height * 0.7;
+//    return CGRectMake(5, 2 , imageW, imageH);
+    CGFloat imageW = contentRect.size.width ;
+    CGFloat imageH = contentRect.size.height ;
+    return CGRectMake(0, 0 , imageW, imageH);
 }
 
 @end

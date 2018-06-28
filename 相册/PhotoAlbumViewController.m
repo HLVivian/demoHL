@@ -50,7 +50,7 @@
     [self.imageViewMax addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewMaxAction)]];
     [self.view addSubview: self.imageViewMax];
     NSInteger num = 0;
-//
+    //
     for (int i =1; i < 8; i++) {
         _button = [HLButton buttonWithType:(UIButtonTypeCustom)];
         _deleteButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -60,13 +60,15 @@
             a = 3;
             num++;
         }
-        NSLog(@"i =%d  a = %ld num = %ld",i ,a,num);
+        NSLog(@"i =%d  a = %ld num = %ld",i ,(long)a,(long)num);
         if (a == 3) {
-            _button.frame =CGRectMake(((a-1) * (SCREEN_WIDTH/3)) +10, ((SCREEN_WIDTH-40)/3 * (num-1))+30, (SCREEN_WIDTH-40)/3, (SCREEN_WIDTH-40)/3);
+            //            _button.frame =CGRectMake(((a-1) * (SCREEN_WIDTH/3)) +10, ((SCREEN_WIDTH-40)/3 * (num-1))+30, (SCREEN_WIDTH-40)/3, (SCREEN_WIDTH-40)/3);
+            _button.frame = CGRectMake(((a-1) * (SCREEN_WIDTH/3)) +10, (((SCREEN_WIDTH-130)/3) *1.8 * (num-1))+30, (SCREEN_WIDTH-130)/3, ((SCREEN_WIDTH-130)/3) *1.7);
         }else{
-            _button.frame = CGRectMake(((a-1) * (SCREEN_WIDTH/3))+10, ((SCREEN_WIDTH-40)/3 * (num))+30, (SCREEN_WIDTH-40)/3, (SCREEN_WIDTH-40)/3);
+            //            _button.frame = CGRectMake(((a-1) * (SCREEN_WIDTH/3))+10, ((SCREEN_WIDTH-40)/3 * (num))+30, (SCREEN_WIDTH-40)/3, (SCREEN_WIDTH-40)/3);
+            _button.frame =CGRectMake(((a-1) * (SCREEN_WIDTH/3))+10, (((SCREEN_WIDTH-130)/3) *1.8 * (num))+30, (SCREEN_WIDTH-130)/3, ((SCREEN_WIDTH-130)/3) *1.7);
         }
-        _deleteButton.frame = CGRectMake(100, 80, 20, 20);
+        _deleteButton.frame = CGRectMake(_button.frame.size.width - 25, _button.frame.size.height - 25, 20, 20);
         [self.button addSubview:self.deleteButton];
         UIImage * deleteButtonImage = [UIImage imageNamed:@"boy"];
         [_deleteButton setImage:deleteButtonImage forState:(UIControlStateNormal)];
@@ -75,99 +77,99 @@
         deletetap.numberOfTapsRequired =1;
         deletetap.numberOfTouchesRequired = 1;
         [_deleteButton addGestureRecognizer:deletetap];
-//        [_deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:(UIControlEventTouchDragInside)];
+        //        [_deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:(UIControlEventTouchDragInside)];
         
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonActionClick:)];
         tap.numberOfTapsRequired =1;
         tap.numberOfTouchesRequired = 1;
         [_button addGestureRecognizer:tap];
         _button.tag = i+1000;
-
+        
         
         UIImage * buttonImage = [UIImage imageNamed:[NSString stringWithFormat:@"%d",i]];
         [_button setImage:buttonImage forState:(UIControlStateNormal)];
-        [_button setTitle:[NSString stringWithFormat:@"第%d张图",i] forState:(UIControlStateNormal)];
-        [_button setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+        //        [_button setTitle:[NSString stringWithFormat:@"第%d张图",i] forState:(UIControlStateNormal)];
+        //        [_button setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
         [self.PhotoAlbumScroll addSubview:_button];
         UILongPressGestureRecognizer * longTap =[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(imglongTapClick:)];
         [_button addGestureRecognizer:longTap];
     }
-//    for (int i =1; i < 8; i++) {
-//        self.imageView = [[UIImageView alloc] init];
-//        NSInteger a = i%3;
-//        if (a == 0) {
-//            a = 3;
-//            num++;
-//        }
-//
-//        if (a == 3) {
-//            _imageView.frame =CGRectMake(((a-1) * (SCREEN_WIDTH/3)) +10, ((SCREEN_WIDTH-40)/3 * (num-1))+30, (SCREEN_WIDTH-40)/3, (SCREEN_WIDTH-40)/3);
-//        }else{
-//             _imageView.frame =CGRectMake(((a-1) * (SCREEN_WIDTH/3))+10, ((SCREEN_WIDTH-40)/3 * (num))+30, (SCREEN_WIDTH-40)/3, (SCREEN_WIDTH-40)/3);
-//        }
-//        self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",i]];
-//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imaageViewActionClick:)];
-//        tap.numberOfTapsRequired =1;
-//        tap.numberOfTouchesRequired = 1;
-//        [_imageView addGestureRecognizer:tap];
-//        _imageView.tag = i+1000;
-//        [self.PhotoAlbumScroll addSubview:self.imageView];
-//    }
-//
+    //    for (int i =1; i < 8; i++) {
+    //        self.imageView = [[UIImageView alloc] init];
+    //        NSInteger a = i%3;
+    //        if (a == 0) {
+    //            a = 3;
+    //            num++;
+    //        }
+    //
+    //        if (a == 3) {
+    //
+    //            _imageView.frame = CGRectMake(((a-1) * (SCREEN_WIDTH/3)) +10, (((SCREEN_WIDTH-130)/3) *1.7 * (num-1))+30, (SCREEN_WIDTH-130)/3, ((SCREEN_WIDTH-130)/3) *1.7);
+    //        }else{
+    //             _imageView.frame =CGRectMake(((a-1) * (SCREEN_WIDTH/3))+10, (((SCREEN_WIDTH-130)/3) *1.8 * (num))+30, (SCREEN_WIDTH-130)/3, ((SCREEN_WIDTH-130)/3) *1.7);
+    //        }
+    //        self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",i]];
+    //        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imaageViewActionClick:)];
+    //        tap.numberOfTapsRequired =1;
+    //        tap.numberOfTouchesRequired = 1;
+    //        [_imageView addGestureRecognizer:tap];
+    //        _imageView.tag = i+1000;
+    //        [self.PhotoAlbumScroll addSubview:self.imageView];
+    //    }
     
 }
 -(void)imaageViewActionClick:(id)sender{
     UITapGestureRecognizer * singTag =(UITapGestureRecognizer * )sender;
     NSInteger tag =[singTag view].tag;
-    NSLog(@"点击了第%ld图",tag);
-   
+    NSLog(@"点击了第%ld图",(long)tag);
+    
 }
 -(void)deleteButtonAction:(id)sender{
     UITapGestureRecognizer * singTag =(UITapGestureRecognizer * )sender;
     NSInteger tag =[singTag view].tag;
-    NSLog(@"点击了第%ld张图的图标",tag);
-
+    NSLog(@"点击了第%ld张图的图标",(long)tag);
+    
     NSMutableArray * arr =[NSMutableArray arrayWithContentsOfFile:newTmp];
     if (arr.count == 0) {
-//        [arr addObject:[NSString stringWithFormat:@"%ld",tag]];
-        [deleteArray addObject:[NSString stringWithFormat:@"%ld",tag]];
+        //        [arr addObject:[NSString stringWithFormat:@"%ld",tag]];
+        [deleteArray addObject:[NSString stringWithFormat:@"%ld",(long)tag]];
         
     }else{
         for (int i = 0; i < arr.count; i++) {
             [deleteArray addObject:arr[i]];
         }
-        [deleteArray addObject:[NSString stringWithFormat:@"%ld",tag]];
+        [deleteArray addObject:[NSString stringWithFormat:@"%ld",(long)tag]];
         
     }
-//    for (NSString *str in arr) {
-//        if (![arr containsObject:str]) {
-//             [arr addObject:[NSString stringWithFormat:@"%ld",tag]];
-//        }
-//    }
-   
+    //    for (NSString *str in arr) {
+    //        if (![arr containsObject:str]) {
+    //             [arr addObject:[NSString stringWithFormat:@"%ld",tag]];
+    //        }
+    //    }
+    
     NSLog(@"arr = %@",arr);
-    NSLog(@"tag = %ld",tag);
-     NSLog(@"deleteArray = %@",deleteArray);
+    NSLog(@"tag = %ld",(long)tag);
+    NSLog(@"deleteArray = %@",deleteArray);
     
     
-        for (int i=1; i < 9; i++) {
-            UIButton *btn = (UIButton *)[self.view viewWithTag:tag];
-            
-            if (tag-200  == i ){
-                NSLog(@"coordinates = %ld",tag);
-                UIImage * deleteButtonImage = [UIImage imageNamed:@"boy"];
-                [btn setImage:deleteButtonImage forState:(UIControlStateNormal)];
-
-            }else{
-                NSLog(@" i = %d",i);
-                UIImage * deleteButtonImage = [UIImage imageNamed:@"girl"];
-                [btn setImage:deleteButtonImage forState:(UIControlStateNormal)];
-            
-            }
-        }
+    for (int i=1; i < 9; i++) {
+        UIButton *btn = (UIButton *)[self.view viewWithTag:tag];
         
+        if (tag-200  == i ){
+            NSLog(@"coordinates = %ld",(long)tag);
+            UIImage * deleteButtonImage = [UIImage imageNamed:@"boy"];
+            [btn setImage:deleteButtonImage forState:(UIControlStateNormal)];
+            
+        }else{
+            NSLog(@" i = %d",i);
+            UIImage * deleteButtonImage = [UIImage imageNamed:@"girl"];
+            [btn setImage:deleteButtonImage forState:(UIControlStateNormal)];
+            
+        }
+    }
+    
     for (NSString * str in arr) {
-         UIButton *btn = (UIButton *)[self.view viewWithTag:tag];
+        UIButton *btn = (UIButton *)[self.view viewWithTag:tag];
         if ([str integerValue] == tag) {
             NSLog(@"str==%@",str);
             UIImage * deleteButtonImage = [UIImage imageNamed:@"boy"];
@@ -202,14 +204,14 @@
 -(void)buttonActionClick:(id)sender{
     UITapGestureRecognizer * singTag =(UITapGestureRecognizer * )sender;
     NSInteger tag =[singTag view].tag - 1000;
-    NSLog(@"单击了第%ld图",tag);
-    self.imageViewMax.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld",tag]];
+    NSLog(@"单击了第%ld图",(long)tag);
+    self.imageViewMax.image = [UIImage imageNamed:[NSString stringWithFormat:@"%ld",(long)tag]];
     self.imageViewMax.hidden = NO;
 }
 -(void)imglongTapClick:(UILongPressGestureRecognizer *)sender{
     UITapGestureRecognizer * singTag =(UITapGestureRecognizer * )sender;
     NSInteger tag =[singTag view].tag - 1000;
-    NSLog(@"长按了第%ld图",tag);
+    NSLog(@"长按了第%ld图",(long)tag);
     
     
 }
@@ -222,13 +224,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
